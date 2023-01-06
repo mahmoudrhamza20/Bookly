@@ -14,7 +14,7 @@ class FeaturedBooksListView extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           return const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 6),
+            padding: EdgeInsets.only(right: 10),
             child: FeaturedListViewItem(),
           );
         },),
