@@ -1,7 +1,6 @@
 import 'package:bookly/features/home/presentation/views_models/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/widgets/custom_error_widget.dart';
 import '../../../../../core/widgets/custom_loading_idicator.dart';
 import 'custom_book_item.dart';
@@ -18,11 +17,12 @@ class FeaturedBooksListView extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .3,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
+              itemCount: state.books.length,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: CustomBookItem(),
+                return  Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: CustomBookItem(imageUrl: state.books[index].volumeInfo.imageLinks.thumbnail),
                 );
               },
             ),
