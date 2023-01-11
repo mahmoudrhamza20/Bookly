@@ -9,8 +9,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'features/home/presentation/views_models/featured_books_cubit/featured_books_cubit.dart';
 import 'features/home/presentation/views_models/newest_books_cubit/newest_books_cubit.dart';
 
-
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+   setupServiceLocator();
   runApp(const Bookly());
 }
 
@@ -21,11 +22,19 @@ class Bookly extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => FeaturedBooksCubit(getIt.get<HomeRepoImpl>(),)),
-        BlocProvider(create: (context) => NewestBookCubit(getIt.get<HomeRepoImpl>(),),)
+       // BlocProvider(create: (context) => FeaturedBooksCubit(HomeRepoImpl(ApiService(Dio())))..fetchFeaturedBooks(),),
+        BlocProvider(
+          create: (context) => FeaturedBooksCubit(
+              getIt.get<HomeRepoImpl>(),)..fetchFeaturedBooks(),
+        ),
+        BlocProvider(
+          create: (context) => NewestBookCubit(
+            getIt.get<HomeRepoImpl>(),
+          ),
+        ),
       ],
       child: MaterialApp.router(
-        routerConfig:AppRouter.router ,
+        routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
             scaffoldBackgroundColor: kPrimaryColor,

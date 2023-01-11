@@ -16,7 +16,7 @@ HomeViewBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children:  const [
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: CustomAppBar(),
